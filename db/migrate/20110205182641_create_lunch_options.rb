@@ -15,6 +15,7 @@ class CreateLunchOptions < ActiveRecord::Migration
       t.string :photo_url_small
       t.boolean :is_closed
       t.integer :event_id
+      t.integer :phone
 
       t.timestamps
     end

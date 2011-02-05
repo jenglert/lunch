@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
   after_save :populate_options
 
   validates_uniqueness_of :url_key
-  validates_presence_of :url_key, :organizer_id, :name, :description, :address, :city, :state, :zip
+  validates_presence_of :url_key, :organizer_id, :name, :description, :address, :city, :state, :zip, :radius
   
   def share_url(request)
     "http://#{request.host}#{request.port ? ':' + request.port.to_s : ''}/event/show/#{url_key}"
@@ -24,10 +24,8 @@ class Event < ActiveRecord::Base
   end
   
   def populate_options
-    c = Curl::Easy.perform("http://api.yelp.com/business_review_search?location=#{URI.escape([address, city, state, zip].join(', '))}&ywsid=M0DPiz_lshtXx1M86Z729w&category=restaurants&radius=3")
+    c = Curl::Easy.perform("http://api.yelp.com/business_review_search?location=#{URI.escape([address, city, state, zip].join(', '))}&ywsid=M0DPiz_lshtXx1M86Z729w&category=restaurants&radius=#{radius}")
     json = JSON.parse(c.body_str)
-    
-    puts "businesses #{json['businesses']}"
     
     json['businesses'].each do |business|
       lunch_option = LunchOption.new(:event_id => self.id)
@@ -36,6 +34,7 @@ class Event < ActiveRecord::Base
       lunch_option.city = business['city']
       lunch_option.state = business['state']
       lunch_option.zip = business['zip']
+      lunch_option.phone = Integer(business['phone'])
       lunch_option.distance = Float(business['distance'])
       lunch_option.photo_url = business['photo_url']
       lunch_option.avg_rating = Float(business['avg_rating'])

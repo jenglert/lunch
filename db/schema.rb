@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20110205204458) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.decimal  "radius"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20110205204458) do
     t.string   "photo_url_small"
     t.boolean  "is_closed"
     t.integer  "event_id"
+    t.integer  "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

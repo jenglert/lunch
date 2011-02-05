@@ -1,4 +1,22 @@
 <div class="eventListing">
-	Name <%= event.name %>
+	<%= image_tag event.photo_url %>
+	<div>
+		<%= event.name %>
+	</div>
+	<div>
+		<% if !event.address.blank? %>
+			<%= event.address %> <br />
+		<% end %>
+		<%= event.city %>, <%= event.state %> <%= event.zip %>
+	</div>
+	<div>
+		Phone: <%= event.phone %>
+	</div>
+	<div>
+		Distance: <%= event.distance %>
+	</div>
+	<div>
+		Categories: <%= event.categories.map { |cat| cat.name }.join(', ') %>
+	</div>
 	
 </div>
