@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(:version => 20110205204458) do
 
   create_table "votes", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "option_id"
+    t.integer  "lunch_option_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,7 +1,13 @@
 <div class="eventListing">
 	<%= image_tag event.photo_url %>
+	
+	<div class="voting" id="voting<%=event.id %>">
+		<a href="javascript:lunchd.event.voteUp(event.id, current_user.id)">Sounds Good!</a> <br />
+		<a href="javascript:lunchd.event.voteDown(event.id, current_user.id)">No Way</a>
+	</div>
+	
 	<div>
-		<%= event.name %>
+		<%= link_to event.name, event.link %>
 	</div>
 	<div>
 		<% if !event.address.blank? %>
@@ -18,5 +24,9 @@
 	<div>
 		Categories: <%= event.categories.map { |cat| cat.name }.join(', ') %>
 	</div>
+	<div>
+		Yelp rating: <%= event.avg_rating %>
+	</div>
+	
 	
 </div>
