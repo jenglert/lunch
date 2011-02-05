@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   def User.create_user(cookies, name)
     user = User.create(:name => name)
-    cookies.permanent[:user_id] = user.id
+    cookies[:user_id] = { :value => user.id, :expires_at => 20.years.from_now }
     
     user
   end

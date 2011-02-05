@@ -7,13 +7,14 @@ class CreateLunchOptions < ActiveRecord::Migration
       t.string :city
       t.string :state
       t.string :zip
-      t.double :distance
+      t.decimal :distance
       t.string :photo_url
-      t.double :avg_rating
-      t.double :latitude
-      t.double :longitude
+      t.decimal :avg_rating
+      t.decimal :latitude
+      t.decimal :longitude
       t.string :photo_url_small
       t.boolean :is_closed
+      t.integer :event_id
 
       t.timestamps
     end
