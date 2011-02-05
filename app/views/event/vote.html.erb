@@ -1,0 +1,12 @@
+
+<% if @result == "ok" %>
+	$('#lunchOption<%= @vote.lunch_option_id %>').load("/event/event_listing/<%= @vote.lunch_option_id %>");
+<% elsif @result == "no-lunch-option" %>
+	alert("There was no option selected.");
+<% elsif @result == "no-user" %>
+	alert("There was no user selected.");
+<% elsif @result == "existing" %>
+	alert("You have already voted for this option.");
+<% else %>
+	alert("Error");
+<% end %>

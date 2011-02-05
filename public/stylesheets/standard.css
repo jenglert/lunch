@@ -1,6 +1,9 @@
 /* CSS */
 
 
-.eventListing { margin: 4px; height: 130px; width: 500px; border: 1px solid gray; padding: 4px; }
-.eventListing IMG { float: left; padding: 0 5px 0 0; }
-.eventListing .voting { float: right; text-align: center; }
+.lunchOptionListing { margin: 4px; height: 130px; width: 500px; border: 1px solid gray; padding: 4px; }
+.lunchOptionListing IMG { float: left; padding: 0 5px 0 0; }
+.lunchOptionListing .votingSection { float: right; text-align: center; }
+.lunchOptionListing .votingSection .votesFor { color: green; }
+.lunchOptionListing .votingSection .votesAgainst { color: red; }
+.lunchOptionListing .votingSection .total { font-weight: bold; }

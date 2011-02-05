@@ -1,32 +1,38 @@
-<div class="eventListing">
-	<%= image_tag event.photo_url %>
-	
-	<div class="voting" id="voting<%=event.id %>">
-		<a href="javascript:lunchd.event.voteUp(event.id, current_user.id)">Sounds Good!</a> <br />
-		<a href="javascript:lunchd.event.voteDown(event.id, current_user.id)">No Way</a>
-	</div>
-	
+<%= image_tag lunch_option.photo_url %>
+
+<div class="votingSection">
+	<% if !lunch_option.has_voted(current_user) %>
+		<div class="voting" id="voting<%=lunch_option.id %>">
+			<a href="javascript:lunchd.event.voteUp(<%= lunch_option.id %>, <%= current_user.id %>)">Sounds Good!</a> <br />
+			<a href="javascript:lunchd.event.voteDown(<%= lunch_option.id %>, <%= current_user.id %>)">No Way</a>
+		</div>
+	<% end %>
 	<div>
-		<%= link_to event.name, event.link %>
+		<span class="votesFor">+<%= lunch_option.votes[0] %></span>
+		<span class="votesAgainst">-<%= lunch_option.votes[1] %></span>
+		=
+		<span class="total"><%= lunch_option.votes[0] - lunch_option.votes[1] %></span>
 	</div>
-	<div>
-		<% if !event.address.blank? %>
-			<%= event.address %> <br />
-		<% end %>
-		<%= event.city %>, <%= event.state %> <%= event.zip %>
-	</div>
-	<div>
-		Phone: <%= event.phone %>
-	</div>
-	<div>
-		Distance: <%= event.distance %>
-	</div>
-	<div>
-		Categories: <%= event.categories.map { |cat| cat.name }.join(', ') %>
-	</div>
-	<div>
-		Yelp rating: <%= event.avg_rating %>
-	</div>
-	
-	
+</div>
+
+<div>
+	<%= link_to lunch_option.name, lunch_option.link %>
+</div>
+<div>
+	<% if !lunch_option.address.blank? %>
+		<%= lunch_option.address %> <br />
+	<% end %>
+	<%= lunch_option.city %>, <%= lunch_option.state %> <%= lunch_option.zip %>
+</div>
+<div>
+	Phone: <%= lunch_option.phone %>
+</div>
+<div>
+	Distance: <%= lunch_option.distance %>
+</div>
+<div>
+	Categories: <%= lunch_option.categories.map { |cat| cat.name }.join(', ') %>
+</div>
+<div>
+	Yelp rating: <%= lunch_option.avg_rating %>
 </div>

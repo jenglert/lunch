@@ -50,14 +50,19 @@ class EventController < ApplicationController
     redirect_to :action => 'show', :id => @event.url_key
   end
   
+  def event_listing
+    @lunch_option = LunchOption.find(params[:id])
+    render :layout => false
+  end
+  
   def vote
-    @event = Event.find_by_id(params[:event_id])
+    @lunch_option = LunchOption.find_by_id(params[:lunch_option_id])
     @user = User.find_by_id(params[:user_id])
     @value = Integer(params[:value])
     @result = ""
     
-    if !@event
-      @result = "no-event"
+    if !@lunch_option
+      @result = "no-lunch-option"
       return render :layout => false
     end
     
@@ -66,13 +71,14 @@ class EventController < ApplicationController
       return render :layout => false
     end
     
-    existing_vote = Vote.find_by_event_id_and_user_id(@event.id, @user.id)
+    existing_vote = Vote.find_by_lunch_option_id_and_user_id(@lunch_option.id, @user.id)
     if existing_vote
       @result = "existing" 
       return render :layout => false
     end
     
-    @vote = Vote.create(:user_id => @user.id, :event_id => @event.id, :value => @value)
+    @vote = Vote.create(:user_id => @user.id, :lunch_option_id => @lunch_option.id, :value => @value)
+    @result = "ok"
     return render :layout => false
   end
   

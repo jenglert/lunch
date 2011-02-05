@@ -9,6 +9,22 @@ if (typeof lunchd.event == 'undefined') {
 	lunchd.event = {}
 }
 
-lunchd.event.voteUp = function(event_id, user_id) {
-	
+lunchd.event.voteUp = function(lunch_option_id, user_id) {
+	$('#voting' + lunch_option_id).remove();
+	$.ajax('/event/vote?lunch_option_id=' + lunch_option_id + '&user_id=' + user_id + '&value=1', {
+		error: function error(jqXHR, textStatus, errorThrown) {
+			alert('errors');
+		},
+		dataType: 'script'
+	});
+}
+
+lunchd.event.voteDown = function(lunch_option_id, user_id) {
+	$('#voting' + lunch_option_id).remove();
+	$.ajax('/event/vote?lunch_option_id=' + lunch_option_id + '&user_id=' + user_id + '&value=-1', {
+		error: function error(jqXHR, textStatus, errorThrown) {
+			alert('error');
+		},
+		dataType: 'script'
+	});	
 }

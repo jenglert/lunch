@@ -11,7 +11,9 @@
 	<div>
 		Places to go:
 		<% @event.lunch_options.each do |option| %>
-			<%= render :partial => 'event_listing', :locals => { :event => option } %>
+			<div class="lunchOptionListing" id="lunchOption<%= option.id %>">
+				<%= render :partial => 'event_listing', :locals => { :lunch_option => option } %>
+			</div>
 		<% end %>
 	</div>
 			
