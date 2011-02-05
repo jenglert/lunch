@@ -1,0 +1,17 @@
+<div class="invite">
+	<h1>Thanks</h1>
+	<h2>Pass this event along to friends so they can be invited to the event.</h2>
+	
+	<div>
+		Share URL: <%= @event.share_url(request) %>
+	</div>
+	
+	<div>
+		Show to friends
+	</div>
+	
+	<div>
+		<%= link_to "View Event Page", :action => 'show', :id => @event.url_key %>
+	</div>
+	
+</div>

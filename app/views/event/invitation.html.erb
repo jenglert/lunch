@@ -1,0 +1,17 @@
+<div class="invitation">
+	<h1>Do you want to go to lunch?</h1>
+	
+	<div>
+		Someone invited you to lunch, do you want to go?
+	</div>
+	
+	<% form_for @event_membership, :url => '/event/attend_event' do |f| %>
+		<div>
+			Your Name: <%= f.text_field :your_name %>
+			<%= f.hidden_field :event_id, :value => @event.id.to_s %>
+		</div>
+		<%= submit_tag "YES" %>
+		<%= submit_tag "No" %>
+	<% end%>
+	
+</div>
