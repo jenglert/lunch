@@ -1,35 +1,55 @@
-<div class="newEvent">
-	<h1>Create an Event</h1>
-	
-	<% form_for @event, :url => '/event/create' do |f| %>
-		<div>
-			<%= error_messages_for :event %>
+<div class= "mainTop">
+	<div class= "main">
+		<div class="newEventHeader">
+			<h1>Create an Event</h1>
 		</div>
-		<div>
-			<label>When</label><%= f.datetime_select :when %>
-		</div>
-		<div>
-			<label>Event Name</label><%= f.text_field :name %>
-		</div>
-		<div>
-			<label>Your Name</label><%= f.text_field :your_name %>
-		</div>
-		<div>
-			<label>Addresss</label><%= f.text_field :address %>
-		</div>
-		<div>
-			<label>City</label><%= f.text_field :city %>
-			<label>State</label><%= f.select :state, states_for_select %>
-			<label>Zip</label><%= f.text_field :zip %>
-		</div>
-		<div>
-			<label>Search Radius</label><%= f.select :radius, radius_for_select %>
-		</div>
-		<div>
-			<label>Description</label><%= f.text_area :description %>
-		</div>
+	</div>
+</div>
+
+<div class= "mainBody">
+	<div class= "dividerBar">
+		Let's figure out what were getting for lunch today!
+	</div>
+	<div class= "main">	
+		<% form_for @event, :url => '/event/create' do |f| %>
 		
-		<%= submit_tag 'Create Event' %>	
-	
-	<% end %>
+		<div class= "newEventBody">	
+			<div class="newEventInfo">
+				
+					<div><label>When</label></div>
+					<div><%= f.datetime_select :when  %></div>
+				
+					<div><label>Event Name</label></div>
+					<div><%= f.text_field :name %></div>
+				
+					<div><label>Your Name</label></div>
+					<div><%= f.text_field :your_name %></div>
+				
+					<div><label>Address</label></div>
+					<div><%= f.text_field :address %></div>
+				
+					<div><label>City</label></div>
+					<div><%= f.text_field :city %></div>
+				
+					<div><label>State</label></div>
+					<div><%= f.select :state, states_for_select %></div>
+				
+					<div><label>Zip</label></div>
+					<div><%= f.text_field :zip %></div>
+				
+					<div><label>Search Radius</label></div>
+					<div><%= f.select :radius, radius_for_select %></div>
+				
+					<div><label>Description</label></div>
+					<div><%= f.text_area :description %></div>
+				
+					<div><%= submit_tag 'Create Event!', :class=> "submitButton"  %></div>
+					<% end %>
+			</div>
+			<div class= "newEventError">
+				<%= error_messages_for :event %>
+			</div>
+			<div class= "clearBoth"></div>
+		</div>	
+	</div>	
 </div>

@@ -1,17 +1,20 @@
 /* CSS */
 
+/* header color: #8F2000 */
+/* body color: #671700 */
+/* error color: #BC5F44 */
+/* link hover: #BC4726 */
+/* dark brown: #722B17 */
+
 /* general */
 
 body {
-	margin: 20px 0px; padding:0px;
+	margin:50px 0px; padding:0px;
 	text-align:left;
 	font-family: "Tahoma";
     line-height: 20px;
+    background-color: black;
     color: white;
-	
-	background: #CE8683; /* for non-css3 browsers */
-
-
 }
 
 .main {
@@ -20,40 +23,15 @@ body {
 	width: 940px;
 }
 
-.mainTop {
-	background: #CE8683;
-}
-
-.mainBody {
-	background: #EEE;
-}
-
-.dividerBar{
-	height: 25px;
-	margin-left: auto;
-	margin-right: auto;
-	width: 936px;
-	color: #676500;
-	text-align: center;
-	
-	border-style: solid;
-	border-top-width: 4px;
-	border-color: #EEE;
-	background: #BCB926;
-	
-
-	
-}
-
 /* default headings */
 
-h1 {font-size: 200%; color: #670500; padding-left: 70px;}
-h2 {font-size: 150%; color: #131E4E;}
-h3 {font-size: 100%; color: #131E4E;}
+h1 {font-size: 200%; color: white; padding-left: 40px;}
+h2 {font-size: 150%; color: #BC5F44;}
+h3 {font-size: 100%; color: #BC5F44;}
 
 /* link behavior */
 
-a:link { color: #8F0700;} /* unvisited link */
+a:link { color: #8F2000;} /* unvisited link */
 a:visited { color: #BC5F44;} /* visited link */
 a:hover {color: #BC5F44; background-color: #BC4726;} /* mouse over link */
 a:active {color: #BC5F44; background-color: #BC4726;} /* selected link*/	
@@ -71,69 +49,70 @@ a:active {color: #BC5F44; background-color: #BC4726;} /* selected link*/
 /* New Event Page */
 
 .newEventHeader { 
-	
-	height: 170px;   
-	 
-	
-	background: #BC2D26;
-	
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 	border-style: solid;
 	border-width: 2px;
-	border-color: #CE8683;
-	border-bottom-color: #BC2D26;
-
+	border-color: #722B17;
+	
+	margin: 4px; 
+	height: 70px;   
+	padding: 4px; 
+	
+	/* gradient */
+	background: #8F2000; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8F2000', endColorstr='#000000'); /* for IE */
+	background: -webkit-gradient(linear, left top, right top, from(#8F2000), to(#000)); /* for webkit browsers */
+	background: -moz-linear-gradient(left,  #8F2000,  #000); /* for firefox 3.6+ */
 	
 }
 
 .newEventBody {
-
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 	border-style: solid;
 	border-width: 2px;
-	border-color: #EEE;
-	background: white;
+	border-color: #722B17;
 
+	margin: 4px;
 	padding: 20px;
 	
 	/* gradient */
-/*	background: #671700; /* for non-css3 browsers */
-/*	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#671700', endColorstr='#000000'); /* for IE */
-/*	background: -webkit-gradient(linear, left top, right top, from(#671700), to(#000)); /* for webkit browsers */
-/*	background: -moz-linear-gradient(left,  #671700,  #000); /* for firefox 3.6+ */
+	background: #671700; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#671700', endColorstr='#000000'); /* for IE */
+	background: -webkit-gradient(linear, left top, right top, from(#671700), to(#000)); /* for webkit browsers */
+	background: -moz-linear-gradient(left,  #671700,  #000); /* for firefox 3.6+ */
 }
 
 .newEventInfo{
 	width: 400px;
-	color: 131E4E;
+	color: white;
 	padding:4px;
 	margin-left: 20px;
 	float: left;
-	margin-right: 10px;
-	
-	border-right-style: dotted;
-	border-right-width: 1px;
-	border-right-color: #BC2D26;
 }
 
 .newEventError { 
 	width: 400px;
-	color: black;
+	color: #BC5F44;
 	padding: 4px;
-	float: left;
-	
-
+	margin-right: 20px;
+	float: right;
 }
 
 .submitButton{
-
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 	font-size:20px;
-	color:#8F0700;
+	font-family:Tahoma,sans-serif;
+	color:#8F2000;
 	width:200px;
 	height:35px;
 	margin-top: 4px;
-	background-color:#BC4A44;
-	border-style:solid;
-	border-color:#670500;
-	border-width:1px;
+	background-color:#BC5F44;
+	border-style:outset;
+	border-color:#8F2000;
+	border-width:3px;
 }
 
 .newEvent IMG { 
