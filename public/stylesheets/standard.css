@@ -117,6 +117,7 @@ a:active {color: #BC5F44; background-color: #BC4726;} /* selected link*/
 .newEventError { 
 	width: 400px;
 	color: black;
+	margin-left: 20px;
 	padding: 4px;
 	float: left;
 	
