@@ -1,4 +1,7 @@
-require 'curl' 
+require 'rubygems'
+require 'curb'
+
+
 
 class Event < ActiveRecord::Base
 

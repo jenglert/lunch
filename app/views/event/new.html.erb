@@ -1,55 +1,44 @@
-<div class= "mainTop">
-	<div class= "main">
-		<div class="newEventHeader">
-			<h1>Create an Event</h1>
-		</div>
-	</div>
+
+<div class="newEventInfo">
+
+	<div><h2>Create an Event</h2></div>
+
+	<% form_for @event, :url => '/event/create' do |f| %>
+
+	<div><label>When</label></div>
+	<div><%= f.datetime_select :when  %></div>
+
+	<div><label>Event Name</label></div>
+	<div><%= f.text_field :name %></div>
+
+	<div><label>Your Name</label></div>
+	<div><%= f.text_field :your_name %></div>
+
+	<div><label>Address</label></div>
+	<div><%= f.text_field :address %></div>
+
+	<div><label>City</label></div>
+	<div><%= f.text_field :city %></div>
+
+	<div><label>State</label></div>
+	<div><%= f.select :state, states_for_select %></div>
+
+	<div><label>Zip</label></div>
+	<div><%= f.text_field :zip %></div>
+
+	<div><label>Search Radius</label></div>
+	<div><%= f.select :radius, radius_for_select %></div>
+
+	<div><label>Description</label></div>
+	<div><%= f.text_area :description %></div>
+
+	<div><%= submit_tag 'Create Event!', :class=> "submitButton"  %></div>
+	
+	<% end %>
+	
 </div>
 
-<div class= "mainBody">
-	<div class= "dividerBar">
-		Let's figure out what were getting for lunch today!
-	</div>
-	<div class= "main">	
-		<% form_for @event, :url => '/event/create' do |f| %>
-		
-		<div class= "newEventBody">	
-			<div class="newEventInfo">
-				
-					<div><label>When</label></div>
-					<div><%= f.datetime_select :when  %></div>
-				
-					<div><label>Event Name</label></div>
-					<div><%= f.text_field :name %></div>
-				
-					<div><label>Your Name</label></div>
-					<div><%= f.text_field :your_name %></div>
-				
-					<div><label>Address</label></div>
-					<div><%= f.text_field :address %></div>
-				
-					<div><label>City</label></div>
-					<div><%= f.text_field :city %></div>
-				
-					<div><label>State</label></div>
-					<div><%= f.select :state, states_for_select %></div>
-				
-					<div><label>Zip</label></div>
-					<div><%= f.text_field :zip %></div>
-				
-					<div><label>Search Radius</label></div>
-					<div><%= f.select :radius, radius_for_select %></div>
-				
-					<div><label>Description</label></div>
-					<div><%= f.text_area :description %></div>
-				
-					<div><%= submit_tag 'Create Event!', :class=> "submitButton"  %></div>
-					<% end %>
-			</div>
-			<div class= "newEventError">
-				<%= error_messages_for :event %>
-			</div>
-			<div class= "clearBoth"></div>
-		</div>	
-	</div>	
+<div class= "newEventError">
+	<%= error_messages_for :event %>
 </div>
+	
