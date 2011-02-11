@@ -94,15 +94,10 @@ a:active {color: #BC5F44; background-color: #BC4726;} /* selected link*/
 
 	padding: 20px;
 	
-	/* gradient */
-/*	background: #671700; /* for non-css3 browsers */
-/*	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#671700', endColorstr='#000000'); /* for IE */
-/*	background: -webkit-gradient(linear, left top, right top, from(#671700), to(#000)); /* for webkit browsers */
-/*	background: -moz-linear-gradient(left,  #671700,  #000); /* for firefox 3.6+ */
 }
 
 
-.newEventInfo{
+.leftBody{
 	width: 400px;
 	color: 131E4E;
 	padding:4px;
@@ -115,7 +110,7 @@ a:active {color: #BC5F44; background-color: #BC4726;} /* selected link*/
 	border-right-color: #BC2D26;
 }
 
-.newEventError { 
+.rightBody{ 
 	width: 400px;
 	color: black;
 	margin-left: 20px;
