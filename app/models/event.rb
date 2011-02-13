@@ -42,6 +42,8 @@ class Event < ActiveRecord::Base
       lunch_option.photo_url_small = business['photo_url_small']
       lunch_option.is_closed = business['is_closed'] == "true"
       lunch_option.link = business['url']
+      lunch_option.rating_img_url_small = business['rating_img_url_small']
+      lunch_option.review_count = business['review_count']
       
       if (business['phone']!=(nil || ""))  
         lunch_option.phone = Integer(business['phone'])
@@ -76,6 +78,21 @@ class Event < ActiveRecord::Base
 
       business['categories'].each do |category|
         lunch_option.categories << LunchOptionCategory.new(:name => category['name'])
+      end
+      
+      business['reviews'].each do |review|
+        lunch_option.reviews << LunchOptionReview.new(:yelp_id => review['id'],
+                                                       :text_excerpt => review['text_excerpt'],
+                                                       :url => review['url'],
+                                                       :user_name => review['user_name'],
+                                                       :user_photo_url => review['user_photo_url'],
+                                                       :user_photo_url_small => review['user_photo_url_small'],
+                                                       :rating => review['review'],
+                                                       :rating_img_url => review['rating_img_url'],
+                                                       :mobile_url => review['mobile_uri'],
+                                                       :user_url => review['user_url'],
+                                                       :date => review['date']
+                                                      )
       end
       
       lunch_option.save!

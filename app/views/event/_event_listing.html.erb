@@ -16,7 +16,12 @@
 </div>
 
 <div>
-	<%= link_to lunch_option.name, lunch_option.link %>
+	<table>
+		<tr>
+			<td><%= link_to lunch_option.name, lunch_option.link %> </td>
+			<td><img src=<%= lunch_option.rating_img_url_small %> alt=<%= lunch_option.avg_rating %> href=<%= lunch_option.link%>  vspace=5 /></td>
+		</tr>
+	</table>
 </div>
 <div>
 	<% if !lunch_option.address.blank? %>
@@ -31,8 +36,6 @@
 	Distance: <%= number_with_precision(lunch_option.distance, :precision => 1) %> mi
 </div>
 <div>
-	Categories: <%= lunch_option.categories.map { |cat| cat.name }.join(', ') %>
+	Styles: <%= lunch_option.categories.map { |cat| cat.name }.join(', ') %>
 </div>
-<div>
-	Yelp rating: <%= lunch_option.avg_rating %>
-</div>
+

@@ -1,6 +1,7 @@
 class LunchOption < ActiveRecord::Base
   belongs_to :event
   has_many :categories, :class_name => "LunchOptionCategory", :foreign_key => "lunch_option_id"
+  has_many :reviews, :class_name => "LunchOptionReview", :foreign_key => "lunch_option_id"
   
   validates_presence_of :name 
                         :address 
@@ -16,6 +17,7 @@ class LunchOption < ActiveRecord::Base
                         :photo_url_small
                         :is_closed
                         :link
+                        :rating_img_url_small
   
   def has_voted(current_user)
     !Vote.find_by_user_id_and_lunch_option_id(current_user.id, self.id).nil?

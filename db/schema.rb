@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110205204458) do
+ActiveRecord::Schema.define(:version => 20110213081901) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -47,6 +47,23 @@ ActiveRecord::Schema.define(:version => 20110205204458) do
     t.datetime "updated_at"
   end
 
+  create_table "lunch_option_reviews", :force => true do |t|
+    t.string   "yelp_id"
+    t.string   "text_excerpt"
+    t.string   "url"
+    t.string   "user_name"
+    t.string   "user_photo_url"
+    t.string   "user_photo_url_small"
+    t.decimal  "rating"
+    t.string   "mobile_url"
+    t.string   "user_url"
+    t.string   "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "lunch_option_id"
+    t.string   "rating_img_url"
+  end
+
   create_table "lunch_options", :force => true do |t|
     t.string   "name"
     t.string   "link"
@@ -65,6 +82,8 @@ ActiveRecord::Schema.define(:version => 20110205204458) do
     t.integer  "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "rating_img_url_small"
+    t.integer  "review_count"
   end
 
   create_table "users", :force => true do |t|
