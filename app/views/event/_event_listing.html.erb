@@ -1,18 +1,18 @@
 <%= image_tag lunch_option.photo_url %>
 
 <div class="votingSection">
-	<% if !lunch_option.has_voted(current_user) %>
 		<div class="voting" id="voting<%=lunch_option.id %>">
-			<a href="javascript:lunchd.event.voteUp(<%= lunch_option.id %>, <%= current_user.id %>)">Sounds Good!</a> <br />
-			<a href="javascript:lunchd.event.voteDown(<%= lunch_option.id %>, <%= current_user.id %>)">No Way</a>
+			<table>
+				<tr>
+					<td><span class="votesFor"><%= lunch_option.votes[0] %></span></td>
+					<td><a href="javascript:lunchd.event.voteUp(<%= lunch_option.id %>, <%= current_user.id %>)"><img src="/images/thumbs_up.png" /></a></td>
+				</tr>
+				<tr>	
+					<td><span class="votesAgainst">	<%= lunch_option.votes[1] %></span></td>
+					<td><a href="javascript:lunchd.event.voteDown(<%= lunch_option.id %>, <%= current_user.id %>)"><img src="/images/thumbs_down.png" /></a></td>
+				</tr>
+				</table>	
 		</div>
-	<% end %>
-	<div>
-		<span class="votesFor">+<%= lunch_option.votes[0] %></span>
-		<span class="votesAgainst">-<%= lunch_option.votes[1] %></span>
-		=
-		<span class="total"><%= lunch_option.votes[0] - lunch_option.votes[1] %></span>
-	</div>
 </div>
 
 <div>
