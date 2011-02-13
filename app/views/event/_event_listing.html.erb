@@ -25,10 +25,10 @@
 	<%= lunch_option.city %>, <%= lunch_option.state %> <%= lunch_option.zip %>
 </div>
 <div>
-	Phone: <%= lunch_option.phone %>
+	Phone: <%= number_to_phone(lunch_option.phone) %>
 </div>
 <div>
-	Distance: <%= lunch_option.distance %>
+	Distance: <%= number_with_precision(lunch_option.distance, :precision => 1) %> mi
 </div>
 <div>
 	Categories: <%= lunch_option.categories.map { |cat| cat.name }.join(', ') %>

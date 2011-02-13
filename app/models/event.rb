@@ -28,6 +28,7 @@ class Event < ActiveRecord::Base
   
   def populate_options
     c = Curl::Easy.perform("http://api.yelp.com/business_review_search?location=#{URI.escape([address, city, state, zip].join(', '))}&ywsid=M0DPiz_lshtXx1M86Z729w&category=restaurants&radius=#{radius}")
+    puts c.body_str
     json = JSON.parse(c.body_str)
     
     json['businesses'].each do |business|
@@ -36,16 +37,43 @@ class Event < ActiveRecord::Base
       lunch_option.address = [business['address1'], business['address2'], business['address3'], business['address4']].join(" ")
       lunch_option.city = business['city']
       lunch_option.state = business['state']
-      lunch_option.zip = business['zip']
-      lunch_option.phone = Integer(business['phone'])
-      lunch_option.distance = Float(business['distance'])
+      lunch_option.zip = business['zip'] 
       lunch_option.photo_url = business['photo_url']
-      lunch_option.avg_rating = Float(business['avg_rating'])
-      lunch_option.latitude = Float(business['latitude'])
-      lunch_option.longitude = Float(business['longitude'])
       lunch_option.photo_url_small = business['photo_url_small']
       lunch_option.is_closed = business['is_closed'] == "true"
       lunch_option.link = business['url']
+      
+      if (business['phone']!=(nil || ""))  
+        lunch_option.phone = Integer(business['phone'])
+      else
+        break
+      end
+
+      if business['distance']!=(nil || "")
+        lunch_option.distance = Float(business['distance'])
+      else
+        break
+      end 
+
+      if business['avg_rating']!=(nil || "")
+        lunch_option.avg_rating = Float(business['avg_rating'])
+      else
+        break
+      end 
+
+      if business['latitude']!=(nil || "")
+        lunch_option.latitude = Float(business['latitude'])
+      else
+        break
+      end
+
+      if business['longitude']!=(nil || "")
+        lunch_option.longitude = Float(business['longitude'])
+      else
+        break
+      end
+
+
       business['categories'].each do |category|
         lunch_option.categories << LunchOptionCategory.new(:name => category['name'])
       end
