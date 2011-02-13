@@ -20,6 +20,7 @@
 		<tr>
 			<td><%= link_to lunch_option.name, lunch_option.link %> </td>
 			<td><img src=<%= lunch_option.rating_img_url_small %> alt=<%= lunch_option.avg_rating %> href=<%= lunch_option.link%>  vspace=5 /></td>
+			<td>(<%= lunch_option.review_count%>)
 		</tr>
 	</table>
 </div>
