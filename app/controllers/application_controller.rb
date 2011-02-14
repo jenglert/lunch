@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   def current_user
     User.find_by_id(cookies[:user_id])
   end
+  helper_method :current_user
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password

@@ -40,15 +40,21 @@ class EventController < ApplicationController
   end
   
   def attend_event
-    raise "#{params['event_membership[event_id]']}"
-    @event = Event.find_by_id(params['event_membership[event_id]'])
+    @event_membership = EventMembership.new(params[:event_membership])
+    @event = Event.find_by_id(@event_membership.event_id)
     return redirect_to :action => 'not_found' if !@event
     
-    @event_membership = EventMembership.new(params[:event_membership])
+    if !(user = current_user)
+      user = User.create_user(cookies, @event.your_name)
+    end
+    
+    @event_membership.user_id = user.id
     
     if !@event_membership.save
       render :action => 'invitation'
+      return
     end
+    
     
     redirect_to :action => 'show', :id => @event.url_key
   end
@@ -92,7 +98,7 @@ class EventController < ApplicationController
 private
   
   def check_current_user
-    return if !current_user.nil?
+    return if current_user
       
     redirect_to :action => :invitation, :id => params[:id]
   end
