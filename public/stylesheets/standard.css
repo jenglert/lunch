@@ -3,7 +3,7 @@
 /* general */
 
 body {
-	margin: 20px 0px; padding:0px;
+	margin: 0px; padding:0px;
 	text-align:left;
 	font-family: "Tahoma";
     line-height: 20px;
@@ -17,7 +17,7 @@ body {
 .main {
 	margin-left: auto;
 	margin-right: auto;
-	width: 940px;
+	width: 965px;
 }
 
 .mainTop {
@@ -73,8 +73,7 @@ a:active {color: #BC5F44; background-color: #BC4726;} /* selected link*/
 .newEventHeader { 
 	
 	height: 170px;   
-	 
-	
+
 	background: #BC2D26;
 	
 	border-style: solid;
@@ -98,25 +97,18 @@ a:active {color: #BC5F44; background-color: #BC4726;} /* selected link*/
 
 
 .leftBody{
-	width: 400px;
+
 	color: 131E4E;
 	padding:4px;
-	margin-left: 20px;
 	float: left;
-	margin-right: 10px;
 	
-	border-right-style: dotted;
-	border-right-width: 1px;
-	border-right-color: #BC2D26;
 }
 
 .rightBody{ 
-	width: 400px;
+
 	color: black;
-	margin-left: 20px;
 	padding: 4px;
-	float: left;
-	
+	float: right;	
 
 }
 
@@ -143,7 +135,7 @@ a:active {color: #BC5F44; background-color: #BC4726;} /* selected link*/
 	text-align: center; 
 }
 
-.lunchOptionListing { height: 150px; width: 600px; border: 1px solid gray; padding: 4px; }
+.lunchOptionListing { height: 100px; width: 440px; border: 1px solid gray; padding: 4px; }
 .lunchOptionListing IMG { float: left; padding: 0 5px 0 0; }
 .lunchOptionListing .votingSection { float: right; text-align: center; }
 .lunchOptionListing .votingSection .votesFor { color: green; }

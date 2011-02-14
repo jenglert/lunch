@@ -1,4 +1,4 @@
-<%= image_tag lunch_option.photo_url %>
+<%= image_tag lunch_option.photo_url, :size => "100x100" %>
 
 <div class="votingSection">
 		<div class="voting" id="voting<%=lunch_option.id %>">
@@ -28,15 +28,15 @@
 	<% if !lunch_option.address.blank? %>
 		<%= lunch_option.address %> <br />
 	<% end %>
-	<%= lunch_option.city %>, <%= lunch_option.state %> <%= lunch_option.zip %>
+	<!-- <%= lunch_option.city %>, <%= lunch_option.state %> <%= lunch_option.zip %> -->
 </div>
 <div>
-	Phone: <%= number_to_phone(lunch_option.phone) %>
+	<!-- Phone: <%= number_to_phone(lunch_option.phone) %> -->
 </div>
 <div>
 	Distance: <%= number_with_precision(lunch_option.distance, :precision => 1) %> mi
 </div>
 <div>
-	Styles: <%= lunch_option.categories.map { |cat| cat.name }.join(', ') %>
+	<%= lunch_option.categories.map { |cat| cat.name }.join(', ') %>
 </div>
 
