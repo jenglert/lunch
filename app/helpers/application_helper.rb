@@ -2,11 +2,7 @@
 module ApplicationHelper
   
   def states_for_select
-    State::NAMES
-  end
-  
-  def current_user
-    User.find_by_id(cookies[:user_id])
+    State::NAMES.map{ |arr| [arr.second, arr.second] } 
   end
   
   def radius_for_select

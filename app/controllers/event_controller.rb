@@ -1,5 +1,7 @@
 class EventController < ApplicationController
   
+  before_filter :check_current_user, :only => [:show, :vote]
+  
   def new
     @event = Event.new
   end
@@ -38,10 +40,11 @@ class EventController < ApplicationController
   end
   
   def attend_event
-    @event = Event.find_by_url_key(params[:id])
+    raise "#{params['event_membership[event_id]']}"
+    @event = Event.find_by_id(params['event_membership[event_id]'])
     return redirect_to :action => 'not_found' if !@event
     
-    @event_membership = EventMembership.new(params[:event])
+    @event_membership = EventMembership.new(params[:event_membership])
     
     if !@event_membership.save
       render :action => 'invitation'
@@ -84,6 +87,14 @@ class EventController < ApplicationController
   
   def not_found
     
+  end
+  
+private
+  
+  def check_current_user
+    return if !current_user.nil?
+      
+    redirect_to :action => :invitation, :id => params[:id]
   end
   
 end

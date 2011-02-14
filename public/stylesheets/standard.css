@@ -3,21 +3,20 @@
 /* general */
 
 body {
-	margin: 0px; padding:0px;
+	margin: 0; 
+	padding: 0;
 	text-align:left;
 	font-family: "Tahoma";
-    line-height: 20px;
-    color: black;
+  line-height: 20px;
+  color: black;
 	
 	background: #CE8683; /* for non-css3 browsers */
-
-
 }
 
 .main {
 	margin-left: auto;
 	margin-right: auto;
-	width: 965px;
+	width: 860px;
 }
 
 .mainTop {
@@ -32,31 +31,24 @@ body {
 	height: 25px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 936px;
+	width: 860px;
 	color: #676500;
 	text-align: center;
-	
-	border-style: solid;
-	border-top-width: 4px;
-	border-color: #EEE;
 	background: #BCB926;
-	
-
-	
 }
 
 /* default headings */
 
-h1 {font-size: 200%; color: #670500; padding-left: 70px;}
-h2 {font-size: 150%; color: #131E4E;}
-h3 {font-size: 100%; color: #131E4E;}
+h1 {font-size: 200%; color: #670500; padding-left: 70px; }
+h2 {font-size: 150%; color: #131E4E; }
+h3 {font-size: 100%; color: #131E4E; }
 
 /* link behavior */
 
-a:link { color: #8F0700;} /* unvisited link */
-a:visited { color: #BC5F44;} /* visited link */
-a:hover {color: #BC5F44; background-color: #BC4726;} /* mouse over link */
-a:active {color: #BC5F44; background-color: #BC4726;} /* selected link*/	
+a:link { color: #8F0700; } /* unvisited link */
+a:visited { color: #BC5F44; } /* visited link */
+a:hover {color: #BC5F44; background-color: #BC4726; } /* mouse over link */
+a:active {color: #BC5F44; background-color: #BC4726; } /* selected link*/	
 
 /* Border Color / Style */
 
@@ -71,49 +63,41 @@ a:active {color: #BC5F44; background-color: #BC4726;} /* selected link*/
 /* New Event Page */
 
 .newEventHeader { 
-	
-	height: 170px;   
-
+	height: 55px;   
 	background: #BC2D26;
-	
-	border-style: solid;
-	border-width: 2px;
-	border-color: #CE8683;
-	border-bottom-color: #BC2D26;
+}
 
-	
+.newEventHeader H1 {
+	padding: 16px 89px;
 }
 
 .newEventBody {
-
-	border-style: solid;
-	border-width: 2px;
-	border-color: #EEE;
 	background: white;
 
 	padding: 20px;
 	
+	margin-left: auto;
+	margin-right: auto;
+	width: 819px;
 }
 
-
 .leftBody{
-
 	color: 131E4E;
 	padding:4px;
 	float: left;
-	
+}
+
+.leftBody .field {
+	padding-bottom: 8px;
 }
 
 .rightBody{ 
-
 	color: black;
 	padding: 4px;
 	float: right;	
-
 }
 
 .submitButton{
-
 	font-size:20px;
 	color:#8F0700;
 	width:200px;
@@ -146,10 +130,20 @@ a:active {color: #BC5F44; background-color: #BC4726;} /* selected link*/
 .eventListing IMG { float: left; padding: 0 5px 0 0; }
 .eventListing .voting { float: right; text-align: center; }
 
+.footer { margin-top: 25px; font-size: 10px; }
 
+.invitation .invitationHeader { padding-bottom: 10px; }
 
+input[type=submit] { color: #8F0700; background-color: #CE8683; border-style: round; border-color: #670500; font-size: 18px; padding: 1px; }
 
-
-
-
+/** New Event Page */
+.newEvent .eventName { width: 200px; }
+.newEvent .yourName  { width: 208px; }
+.newEvent .address   { width: 230px; }
+.newEvent .zip       { width: 45px; }
+.newEvent LABEL      { padding-right: 2px; }
+.newEvent .city      { width: 80px; margin-right: 5px; }
+.newEvent .description { width: 205px; }
+.newEvent .field     { padding-bottom: 8px; }
+.newEvent .createEventSubmit { margin-left: 42px; }
 

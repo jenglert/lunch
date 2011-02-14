@@ -1,13 +1,11 @@
 <div class="invitation">
-	<h1>Do you want to go to lunch?</h1>
-	
-	<div>
-		Someone invited you to lunch, do you want to go?
-	</div>
+	<h2 class="invitationHeader">
+		<%= @event.organizer.name %> invited you to lunch, do you want to go?
+	</h2>
 	
 	<% form_for @event_membership, :url => '/event/attend_event' do |f| %>
 		<div>
-			Your Name: <%= f.text_field :your_name %>
+			Your Name: <%= f.text_field :your_name, :style => "length: 30px" %>
 			<%= f.hidden_field :event_id, :value => @event.id.to_s %>
 		</div>
 		<%= submit_tag "YES" %>
