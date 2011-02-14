@@ -28,7 +28,6 @@ class Event < ActiveRecord::Base
   
   def populate_options
     c = Curl::Easy.perform("http://api.yelp.com/business_review_search?location=#{URI.escape([address, city, state, zip].join(', '))}&ywsid=M0DPiz_lshtXx1M86Z729w&category=restaurants&radius=#{radius}")
-    puts c.body_str
     json = JSON.parse(c.body_str)
     
     json['businesses'].each do |business|
