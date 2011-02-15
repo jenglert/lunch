@@ -119,7 +119,7 @@ a:active {color: #BC5F44; background-color: #BC4726; } /* selected link*/
 	text-align: center; 
 }
 
-.lunchOptionListing { height: 100px; width: 440px; border: 1px solid gray; padding: 4px; }
+.lunchOptionListing { height: 100px; width: 380px; border: 1px solid gray; padding: 4px; }
 .lunchOptionListing IMG { float: left; padding: 0 5px 0 0; }
 .lunchOptionListing .votingSection { float: right; text-align: center; }
 .lunchOptionListing .votingSection .votesFor { color: green; }
