@@ -1,4 +1,6 @@
-<%= image_tag lunch_option.photo_url, :size => "100x100" %>
+<div class="imageSectionBorder">
+	<img class="imageSection" src="<%= lunch_option.photo_url %>" width="100" height="100"/>
+</div>
 
 <div class="votingSection">
 		<div class="voting" id="voting<%=lunch_option.id %>">
@@ -15,7 +17,7 @@
 		</div>
 </div>
 
-<div>
+<div >
 	<table>
 		<tr>
 			<td><%= link_to lunch_option.name, lunch_option.link %> </td>
@@ -39,4 +41,5 @@
 <div>
 	<%= lunch_option.categories.map { |cat| cat.name }.join(', ') %>
 </div>
+
 

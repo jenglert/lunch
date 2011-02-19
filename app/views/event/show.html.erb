@@ -10,21 +10,10 @@
 	</div>
 	<div>
 		<div class="leftBody">
-		<% @event.lunch_options.each_with_index do |option, index| %>
-			<% if (index<5) %>
+		<% @event.lunch_options.each do |option| %>
 				<div class="lunchOptionListing" id="lunchOption<%= option.id %>">
 					<%= render :partial => 'event_listing', :locals => { :lunch_option => option } %>
 				</div>
-			<% end %>
-		<% end%>
-		</div>
-		<div class="rightBody">
-		<% @event.lunch_options.each_with_index do |option, index| %>
-			<% if ((index>5) && (index<=10)) %> 
-				<div class="lunchOptionListing" id="lunchOption<%= option.id %>">
-					<%= render :partial => 'event_listing', :locals => { :lunch_option => option } %>
-				</div>
-			<% end %>
 		<% end %>
 		</div>
 	</div>		

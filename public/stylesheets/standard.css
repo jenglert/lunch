@@ -24,7 +24,7 @@ body {
 }
 
 .mainBody {
-	background: #EEE;
+	background: white;
 }
 
 .dividerBar{
@@ -32,14 +32,14 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	width: 860px;
-	color: #676500;
+	color: black;
 	text-align: center;
-	background: #BCB926;
+	background: white;
 }
 
 /* default headings */
 
-h1 {font-size: 200%; color: #670500; padding-left: 70px; }
+h1 {font-size: 200%; color: #670500; }
 h2 {font-size: 150%; color: #131E4E; }
 h3 {font-size: 100%; color: #131E4E; }
 
@@ -119,14 +119,41 @@ a:active {color: #BC5F44; background-color: #BC4726; } /* selected link*/
 	text-align: center; 
 }
 
-.lunchOptionListing { height: 100px; width: 380px; border: 1px solid gray; padding: 4px; }
-.lunchOptionListing IMG { float: left; padding: 0 5px 0 0; }
+.lunchOptionListing { 
+	height: 107px; 
+	width: 450px; 
+	padding: 10px;  
+	margin: 2px;
+	border: 2px solid black;
+	-moz-border-radius: 22px;
+    -webkit-border-radius: 22px;
+    -khtml-border-radius: 22px;
+    border-radius: 22px;	
+	
+}
+
+.lunchOptionListing .imageSection {
+	-moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+	float: left;
+}
+.lunchOptionListing .imageSectionBorder {
+	border:  2px solid black;
+	-moz-border-radius: 22px;
+    -webkit-border-radius: 22px;
+    -khtml-border-radius: 22px;
+    border-radius: 22px;
+	float: left;
+	margin: 2px;
+}
 .lunchOptionListing .votingSection { float: right; text-align: center; }
 .lunchOptionListing .votingSection .votesFor { color: green; }
 .lunchOptionListing .votingSection .votesAgainst { color: red; }
 .lunchOptionListing .votingSection .total { font-weight: bold; }
 
-.eventListing { margin: 4px; height: 130px; width: 500px; border: 1px solid gray; padding: 4px; }
+.eventListing { margin: 4px; height: 130px; width: 500px; border: 1px white; padding: 4px; }
 .eventListing IMG { float: left; padding: 0 5px 0 0; }
 .eventListing .voting { float: right; text-align: center; }
 
