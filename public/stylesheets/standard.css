@@ -24,7 +24,7 @@ body {
 }
 
 .mainBody {
-	background: white;
+	background: #EEE;
 }
 
 .dividerBar{
@@ -34,7 +34,7 @@ body {
 	width: 860px;
 	color: black;
 	text-align: center;
-	background: white;
+	background: #BCB926;
 }
 
 /* default headings */
