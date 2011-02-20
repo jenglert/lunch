@@ -1,20 +1,21 @@
-<div class="show">
-	<h1><%= @event.name %></h1>
-	<div>
-		People going:
-		<ul>
-			<% @event.people_going.each do |user| %>
-				<li><%= user.name %></li>
-			<% end %>
-		</ul>
+<div class="eventShow">
+	<h1 class="eventName"><%= @event.name %></h1>
+	<div class="description">
+		Description: <%= @event.description %>
 	</div>
-	<div>
-		<div class="leftBody">
+	<div class="peopleGoing">
+		People going: <%= @event.people_going.map{ |person| person.name }.join(', ')%>
+	</div>
+	<div class="rightSection">
+		Email invitations: <br />
+		<span class="url"><%= @event.share_url(request) %></span>
+	</div>
+
+	<div class="leftBody">
 		<% @event.lunch_options.each do |option| %>
 				<div class="lunchOptionListing" id="lunchOption<%= option.id %>">
 					<%= render :partial => 'event_listing', :locals => { :lunch_option => option } %>
 				</div>
 		<% end %>
-		</div>
-	</div>		
+	</div>
 </div>

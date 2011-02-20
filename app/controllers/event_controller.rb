@@ -17,20 +17,21 @@ class EventController < ApplicationController
   
   def create
     @event = Event.new(params[:event])
+    @when_string = params[:when]
+    @when_time_string = params[:when_time]
+    
+    if @when_string and !@when_string.empty? and @when_time_string
+      @event.when = Time.parse(@when_string) + (Float(@when_time_string) / 100).hours
+    end
     
     user = User.create_user(cookies, @event.your_name)
     @event.organizer_id = user.id
     
     if @event.save
-      return redirect_to :action => 'send_invites', :id => @event.url_key
+      return redirect_to :action => 'show', :id => @event.url_key
     end
     
     render :action => 'new'
-  end
-  
-  def send_invites
-    @event = Event.find_by_url_key(params[:id])
-    return redirect_to :action => 'not_found' if !@event
   end
   
   def invitation

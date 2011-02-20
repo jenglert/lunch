@@ -9,7 +9,11 @@
 
 	<div class="field">
 		<label>When</label>
-		<%= f.datetime_select :when, :class => 'when'  %>
+		<%= text_field_tag :when, @when_string, :class => 'when' %>		
+		<script type="text/javascript">
+			$("#when").datepicker();
+		</script>
+		<%= select_tag :when_time, options_for_select(lunch_times, @when_time_string), :class => "when_time" %>
 	</div>
 
 	<div class="field">

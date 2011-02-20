@@ -2,6 +2,8 @@
 
 /* general */
 
+.fieldWithErrors { display: inline; }
+
 body {
 	margin: 0; 
 	padding: 0;
@@ -134,12 +136,13 @@ a:active {color: #BC5F44; background-color: #BC4726; } /* selected link*/
 
 .lunchOptionListing .imageSection {
 	-moz-border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -khtml-border-radius: 20px;
-    border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -khtml-border-radius: 20px;
+  border-radius: 20px;
 	float: left;
 }
-.lunchOptionListing .imageSectionBorder {
+
+.doesntwork .lunchOptionListing .imageSectionBorder {
 	border:  2px solid black;
 	-moz-border-radius: 22px;
     -webkit-border-radius: 22px;
@@ -148,6 +151,7 @@ a:active {color: #BC5F44; background-color: #BC4726; } /* selected link*/
 	float: left;
 	margin: 2px;
 }
+
 .lunchOptionListing .votingSection { float: right; text-align: center; }
 .lunchOptionListing .votingSection .votesFor { color: green; }
 .lunchOptionListing .votingSection .votesAgainst { color: red; }
@@ -164,6 +168,8 @@ a:active {color: #BC5F44; background-color: #BC4726; } /* selected link*/
 input[type=submit] { color: #8F0700; background-color: #CE8683; border-style: round; border-color: #670500; font-size: 18px; padding: 1px; }
 
 /** New Event Page */
+.newEvent .when      { width: 140px; }
+.newEvent .when_time { width: 99px; }
 .newEvent .eventName { width: 200px; }
 .newEvent .yourName  { width: 208px; }
 .newEvent .address   { width: 230px; }
@@ -174,3 +180,9 @@ input[type=submit] { color: #8F0700; background-color: #CE8683; border-style: ro
 .newEvent .field     { padding-bottom: 8px; }
 .newEvent .createEventSubmit { margin-left: 42px; }
 
+/** Event show page */
+.eventShow .eventName    { padding-top: 0px; margin-top: 0px; }
+.eventShow .peopleGoing  { padding-bottom: 10px; }
+.eventShow .rightSection { float: right; width: 280px; background-color: #EEE; padding: 15px; margin-top: 4px; }
+.eventShow .url          { font-size: 13px; }
+.eventShow .description  { padding-bottom: 5px; }

@@ -1,8 +1,6 @@
 require 'rubygems'
 require 'curb'
 
-
-
 class Event < ActiveRecord::Base
 
   has_many :event_memberships
@@ -16,7 +14,7 @@ class Event < ActiveRecord::Base
   after_save :populate_options
 
   validates_uniqueness_of :url_key
-  validates_presence_of :url_key, :organizer_id, :name, :description, :address, :city, :state, :zip, :radius
+  validates_presence_of :url_key, :organizer_id, :name, :description, :address, :city, :state, :zip, :radius, :when
   
   def share_url(request)
     "http://#{request.host}#{request.port ? ':' + request.port.to_s : ''}/event/show/#{url_key}"
