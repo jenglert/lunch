@@ -7,7 +7,7 @@
 		People going: <%= @event.people_going.map{ |person| person.name }.join(', ')%>
 	</div>
 	<div class="rightSection">
-		Email invitations: <br />
+		Send out invitations with this link: <br />
 		<span class="url"><%= @event.share_url(request) %></span>
 	</div>
 
