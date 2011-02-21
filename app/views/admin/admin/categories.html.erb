@@ -1,0 +1,6 @@
+<% Yelp::Category.all.each do |category| %>
+	<% category.level.times do %>
+		&nbsp;&nbsp;
+	<% end %>
+	<%= category.id %>. <%= category.name %><br />
+<% end %>

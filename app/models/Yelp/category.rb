@@ -2,6 +2,12 @@ module Yelp
   class Category < ActiveRecord::Base
   
     set_table_name 'yelp_categories'
+
+    def level 
+      return 1 if parent_category_id.nil?
+      
+      return Yelp::Category.find(parent_category_id).level + 1
+    end
     
     LEVEL_ONE_STRING = "* "
     LEVEL_TWO_STRING = "      o "
