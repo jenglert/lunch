@@ -48,11 +48,14 @@ h2 {font-size: 150%; color: #131E4E; }
 h3 {font-size: 100%; color: #131E4E; }
 
 /* link behavior */
-
 a:link { color: #8F0700; } /* unvisited link */
 a:visited { color: #BC5F44; } /* visited link */
 a:hover {color: #BC5F44; background-color: #BC4726; } /* mouse over link */
 a:active {color: #BC5F44; background-color: #BC4726; } /* selected link*/	
+
+/* No special styles for image links */
+a:hover IMG { background-color: white; } /* mouse over link */
+a:active IMG { background-color: white; } /* selected link*/
 
 /* Border Color / Style */
 
@@ -154,10 +157,12 @@ a:active {color: #BC5F44; background-color: #BC4726; } /* selected link*/
 	margin: 2px;
 }
 
-.lunchOptionListing .votingSection { float: right; text-align: center; }
+.lunchOptionListing { position: relative; }
+.lunchOptionListing .votingSection { float: right; text-align: right; }
 .lunchOptionListing .votingSection .votesFor { color: green; }
 .lunchOptionListing .votingSection .votesAgainst { color: red; }
 .lunchOptionListing .votingSection .total { font-weight: bold; }
+.lunchOptionListing .votingControls { position: absolute; top: 100px; left: 410px; }
 
 .eventListing { margin: 4px; height: 130px; width: 500px; border: 1px white; padding: 4px; }
 .eventListing IMG { float: left; padding: 0 5px 0 0; }

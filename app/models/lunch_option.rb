@@ -2,6 +2,7 @@ class LunchOption < ActiveRecord::Base
   belongs_to :event
   has_many :categories, :class_name => "LunchOptionCategory", :foreign_key => "lunch_option_id"
   has_many :reviews, :class_name => "LunchOptionReview", :foreign_key => "lunch_option_id"
+  has_many :votes
   
   validates_presence_of :name 
                         :address 

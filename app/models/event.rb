@@ -16,6 +16,18 @@ class Event < ActiveRecord::Base
   validates_uniqueness_of :url_key
   validates_presence_of :url_key, :organizer_id, :name, :description, :address, :city, :state, :zip, :radius, :when
   
+  def sorted_lunch_options
+    sql = <<-SQL
+      select lunch_options.*
+        from lunch_options
+        left join votes on lunch_options.id = votes.lunch_option_id
+        group by lunch_options.id
+        order by sum(coalesce(votes.value, 0)) desc
+    SQL
+    
+    LunchOption.find_by_sql(sql)
+  end
+  
   def share_url(request)
     "http://#{request.host}#{request.port ? ':' + request.port.to_s : ''}/event/show/#{url_key}"
   end

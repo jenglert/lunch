@@ -3,28 +3,24 @@
 </div>
 
 <div class="votingSection">
-		<div class="voting" id="voting<%=lunch_option.id %>">
-			<table>
-				<tr>
-					<td><span class="votesFor"><%= lunch_option.votes[0] %></span></td>
-					<% if !lunch_option.has_voted(current_user) %>
-						<td><a href="javascript:lunchd.event.voteUp(<%= lunch_option.id %>, <%= current_user.id %>)"><img src="/images/thumbs_up.png" /></a></td>
-					<% end %>
-				</tr>
-				<tr>	
-					<td><span class="votesAgainst">	<%= lunch_option.votes[1] %></span></td>
-					<% if !lunch_option.has_voted(current_user) %>
-						<td><a href="javascript:lunchd.event.voteDown(<%= lunch_option.id %>, <%= current_user.id %>)"><img src="/images/thumbs_down.png" /></a></td>
-					<% end %>
-				</tr>
-				</table>	
+		<div class="voting" >
+			<span class="votesFor">for: <%= lunch_option.votes[0] %></span>
+			<br />
+			<span class="votesAgainst">against: <%= lunch_option.votes[1] %></span>
 		</div>
+</div>
+
+<div class="votingControls" id="voting<%=lunch_option.id %>">
+	<% if !lunch_option.has_voted(current_user) %>
+		<a href="javascript:lunchd.event.voteUp(<%= lunch_option.id %>, <%= current_user.id %>)"><img src="/images/thumbs_up.png" /></a>
+		<a href="javascript:lunchd.event.voteDown(<%= lunch_option.id %>, <%= current_user.id %>)"><img src="/images/thumbs_down.png" /></a>
+	<% end %>
 </div>
 
 <div >
 	<table>
 		<tr>
-			<td><%= link_to lunch_option.name, lunch_option.link %> </td>
+			<td><%= link_to shorten(lunch_option.name, 25), lunch_option.link %></td>
 			<td><img src=<%= lunch_option.rating_img_url_small %> alt=<%= lunch_option.avg_rating %> href=<%= lunch_option.link%>  vspace=5 /></td>
 			<td>(<%= lunch_option.review_count%>)
 		</tr>
