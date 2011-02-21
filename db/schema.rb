@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110213081901) do
+ActiveRecord::Schema.define(:version => 20110221000851) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -97,6 +97,14 @@ ActiveRecord::Schema.define(:version => 20110213081901) do
     t.integer  "user_id"
     t.integer  "lunch_option_id"
     t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "yelp_categories", :force => true do |t|
+    t.string   "name"
+    t.string   "key"
+    t.integer  "parent_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
