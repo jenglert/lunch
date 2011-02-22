@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
       select lunch_options.*
         from lunch_options
         left join votes on lunch_options.id = votes.lunch_option_id
-        where lunch_options.event.id = #{self.id}
+        where lunch_options.event_id = #{self.id}
         group by lunch_options.id
         order by sum(coalesce(votes.value, 0)) desc
     SQL
