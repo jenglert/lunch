@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110221000851) do
+ActiveRecord::Schema.define(:version => 20110227023137) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(:version => 20110221000851) do
     t.string   "rating_img_url_small"
     t.integer  "review_count"
   end
+
+  add_index "lunch_options", ["event_id", "link"], :name => "lunchoption_event_id_link_uidx", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"

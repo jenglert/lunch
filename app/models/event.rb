@@ -41,81 +41,90 @@ class Event < ActiveRecord::Base
     
     splits = Yelp::Category.category_splits(Yelp::Category.find(:all, :conditions => ["key in (?)", %w"restaurants"]), 5)
     
+    lunch_options = []
+    
     urls = []
     splits.each do |split|
       urls << "http://api.yelp.com/business_review_search?location=#{URI.escape([address, city, state, zip].join(', '))}&ywsid=M0DPiz_lshtXx1M86Z729w&category=#{split.join("+")}&radius=#{radius}"
     end
     
     c = Curl::Multi.get(urls, { :follow_location => true }, { :pipeline => true }) do |easy|
-    json = JSON.parse(easy.body_str)
+      json = JSON.parse(easy.body_str)
   
-    json['businesses'].each do |business|
-      lunch_option = LunchOption.new(:event_id => self.id)
-      lunch_option.name = business['name']
-      lunch_option.address = [business['address1'], business['address2'], business['address3'], business['address4']].join(" ")
-      lunch_option.city = business['city']
-      lunch_option.state = business['state']
-      lunch_option.zip = business['zip'] 
-      lunch_option.photo_url = business['photo_url']
-      lunch_option.photo_url_small = business['photo_url_small']
-      lunch_option.is_closed = business['is_closed'] == "true"
-      lunch_option.link = business['url']
-      lunch_option.rating_img_url_small = business['rating_img_url_small']
-      lunch_option.review_count = business['review_count']
+      json['businesses'].each do |business|
+        lunch_option = LunchOption.new(:event_id => self.id)
+        lunch_option.name = business['name']
+        lunch_option.address = [business['address1'], business['address2'], business['address3'], business['address4']].join(" ")
+        lunch_option.city = business['city']
+        lunch_option.state = business['state']
+        lunch_option.zip = business['zip'] 
+        lunch_option.photo_url = business['photo_url']
+        lunch_option.photo_url_small = business['photo_url_small']
+        lunch_option.is_closed = business['is_closed'] == "true"
+        lunch_option.link = business['url']
+        lunch_option.rating_img_url_small = business['rating_img_url_small']
+        lunch_option.review_count = business['review_count']
     
-      if (business['phone']!=(nil || ""))  
-        lunch_option.phone = Integer(business['phone'])
-      else
-        break
-      end
+        if (business['phone']!=(nil || ""))  
+          lunch_option.phone = Integer(business['phone'])
+        else
+          break
+        end
 
-      if business['distance']!=(nil || "")
-        lunch_option.distance = Float(business['distance'])
-      else
-        break
-      end 
+        if business['distance']!=(nil || "")
+          lunch_option.distance = Float(business['distance'])
+        else
+          break
+        end 
 
-      if business['avg_rating']!=(nil || "")
-        lunch_option.avg_rating = Float(business['avg_rating'])
-      else
-        break
-      end 
+        if business['avg_rating']!=(nil || "")
+          lunch_option.avg_rating = Float(business['avg_rating'])
+        else
+          break
+        end 
 
-      if business['latitude']!=(nil || "")
-        lunch_option.latitude = Float(business['latitude'])
-      else
-        break
-      end
+        if business['latitude']!=(nil || "")
+          lunch_option.latitude = Float(business['latitude'])
+        else
+          break
+        end
 
-      if business['longitude']!=(nil || "")
-        lunch_option.longitude = Float(business['longitude'])
-      else
-        break
-      end
+        if business['longitude']!=(nil || "")
+          lunch_option.longitude = Float(business['longitude'])
+        else
+          break
+        end
 
 
-      business['categories'].each do |category|
-        lunch_option.categories << LunchOptionCategory.new(:name => category['name'])
-      end
+        business['categories'].each do |category|
+          lunch_option.categories << LunchOptionCategory.new(:name => category['name'])
+        end
     
-      business['reviews'].each do |review|
-        lunch_option.reviews << LunchOptionReview.new(:yelp_id => review['id'],
-                                                       :text_excerpt => review['text_excerpt'],
-                                                       :url => review['url'],
-                                                       :user_name => review['user_name'],
-                                                       :user_photo_url => review['user_photo_url'],
-                                                       :user_photo_url_small => review['user_photo_url_small'],
-                                                       :rating => review['review'],
-                                                       :rating_img_url => review['rating_img_url'],
-                                                       :mobile_url => review['mobile_uri'],
-                                                       :user_url => review['user_url'],
-                                                       :date => review['date']
-                                                      )
-      end
+        business['reviews'].each do |review|
+          lunch_option.reviews << LunchOptionReview.new(:yelp_id => review['id'],
+                                                         :text_excerpt => review['text_excerpt'],
+                                                         :url => review['url'],
+                                                         :user_name => review['user_name'],
+                                                         :user_photo_url => review['user_photo_url'],
+                                                         :user_photo_url_small => review['user_photo_url_small'],
+                                                         :rating => review['review'],
+                                                         :rating_img_url => review['rating_img_url'],
+                                                         :mobile_url => review['mobile_uri'],
+                                                         :user_url => review['user_url'],
+                                                         :date => review['date']
+                                                        )
+        end
     
-      lunch_option.save!
+        lunch_options << lunch_option
+      end
+      
+      grouped = lunch_options.group_by { |lo| lo.link }
+      
+      grouped.each do |key, group|
+        group.first.save!
+      end
+      
     end
-  end
   end
   
 protected
