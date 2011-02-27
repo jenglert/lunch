@@ -38,9 +38,17 @@ class Event < ActiveRecord::Base
   end
   
   def populate_options
-    c = Curl::Easy.perform("http://api.yelp.com/business_review_search?location=#{URI.escape([address, city, state, zip].join(', '))}&ywsid=M0DPiz_lshtXx1M86Z729w&category=restaurants&radius=#{radius}")
-    json = JSON.parse(c.body_str)
     
+    splits = Yelp::Category.category_splits(Yelp::Category.find(:all, :conditions => ["key in (?)", %w"restaurants"]), 5)
+    
+    urls = []
+    splits.each do |split|
+      urls << "http://api.yelp.com/business_review_search?location=#{URI.escape([address, city, state, zip].join(', '))}&ywsid=M0DPiz_lshtXx1M86Z729w&category=#{split.join("+")}&radius=#{radius}"
+    end
+    
+    c = Curl::Multi.get(urls, { :follow_location => true }, { :pipeline => true }) do |easy|
+    json = JSON.parse(easy.body_str)
+  
     json['businesses'].each do |business|
       lunch_option = LunchOption.new(:event_id => self.id)
       lunch_option.name = business['name']
@@ -54,7 +62,7 @@ class Event < ActiveRecord::Base
       lunch_option.link = business['url']
       lunch_option.rating_img_url_small = business['rating_img_url_small']
       lunch_option.review_count = business['review_count']
-      
+    
       if (business['phone']!=(nil || ""))  
         lunch_option.phone = Integer(business['phone'])
       else
@@ -89,7 +97,7 @@ class Event < ActiveRecord::Base
       business['categories'].each do |category|
         lunch_option.categories << LunchOptionCategory.new(:name => category['name'])
       end
-      
+    
       business['reviews'].each do |review|
         lunch_option.reviews << LunchOptionReview.new(:yelp_id => review['id'],
                                                        :text_excerpt => review['text_excerpt'],
@@ -104,9 +112,10 @@ class Event < ActiveRecord::Base
                                                        :date => review['date']
                                                       )
       end
-      
+    
       lunch_option.save!
     end
+  end
   end
   
 protected
