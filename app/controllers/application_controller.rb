@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def check_permissions
+    authenticate_or_request_with_http_basic do |user_name, password|
+      user_name == 'admin' && password == '1unchd'
+    end
+  end
+  
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 end

@@ -1,0 +1,20 @@
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Organizer</th>
+		<th>Yelp Requests</th>
+		<th>Members</th>
+	</tr>
+	<% @events.each do |event| %>
+		<tr>
+			<td><%= link_to event.name, :controller => 'admin/event', :action => 'show', :id => event.id %></td>
+			<td><%= event.description %></td>
+			<td><%= event.organizer.name %></td>
+			<td><%= link_to event.request_logs.size, :controller => 'admin/event', :action => 'request_logs', :id => event.id %></td>
+			<td><%= link_to event.users.size, :controller => 'admin/event', :action => 'users', :id => event.id %></td>
+		</tr>
+		
+	<% end %>		
+<table>
+		

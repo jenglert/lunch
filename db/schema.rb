@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110227023137) do
+ActiveRecord::Schema.define(:version => 20110305021711) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -88,6 +88,14 @@ ActiveRecord::Schema.define(:version => 20110227023137) do
 
   add_index "lunch_options", ["event_id", "link"], :name => "lunchoption_event_id_link_uidx", :unique => true
 
+  create_table "request_logs", :force => true do |t|
+    t.text     "body"
+    t.integer  "response_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "event_id"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "cookie"
@@ -109,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20110227023137) do
     t.integer  "parent_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "excluded"
   end
 
 end

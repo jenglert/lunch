@@ -8,7 +8,7 @@ module Yelp
     LEVEL_THREE_STRING = "            + "
 
     def sub_categories
-      Yelp::Category.find_all_by_parent_category_id(id)
+      Yelp::Category.find_all_by_parent_category_id_and_excluded(id, false)
     end
 
     def level 

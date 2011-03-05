@@ -6,8 +6,9 @@ class Event < ActiveRecord::Base
   has_many :event_memberships
   has_many :users, :through => :event_memberships
   has_many :lunch_options
+  has_many :request_logs
   belongs_to :organizer, :class_name => "User", :foreign_key => 'organizer_id'
-  
+
   attr_accessor :your_name
 
   before_validation :create_url
@@ -15,7 +16,7 @@ class Event < ActiveRecord::Base
 
   validates_uniqueness_of :url_key
   validates_presence_of :url_key, :organizer_id, :name, :description, :address, :city, :state, :zip, :radius, :when
-  
+
   def sorted_lunch_options
     sql = <<-SQL
       select lunch_options.*
@@ -25,10 +26,10 @@ class Event < ActiveRecord::Base
         group by lunch_options.id
         order by sum(coalesce(votes.value, 0)) desc
     SQL
-    
+
     LunchOption.find_by_sql(sql)
   end
-  
+
   def share_url(request)
     "http://#{request.host}#{request.port ? ':' + request.port.to_s : ''}/event/show/#{url_key}"
   end
@@ -39,7 +40,7 @@ class Event < ActiveRecord::Base
   
   def populate_options
     
-    splits = Yelp::Category.category_splits(Yelp::Category.find(:all, :conditions => ["key in (?)", %w"restaurants"]), 5)
+    splits = Yelp::Category.category_splits(Yelp::Category.find(:all, :conditions => ["key in (?)", %w"restaurants"]), 8)
     
     lunch_options = []
     
@@ -49,6 +50,9 @@ class Event < ActiveRecord::Base
     end
     
     c = Curl::Multi.get(urls, { :follow_location => true }, { :pipeline => true }) do |easy|
+      
+      RequestLog.create!(:body => easy.body_str, :response_code => easy.response_code, :event_id => id)
+      
       json = JSON.parse(easy.body_str)
   
       json['businesses'].each do |business|

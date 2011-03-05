@@ -19,10 +19,4 @@ class Admin::AdminController < ApplicationController
     return render :text => "Done"
   end
   
-  def check_permissions
-    authenticate_or_request_with_http_basic do |user_name, password|
-      user_name == 'admin' && password == '1unchd'
-    end
-  end
-  
 end

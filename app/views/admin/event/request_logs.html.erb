@@ -1,0 +1,16 @@
+<%= @title = "Request Logs for #{@event.id}" %>
+
+<table>
+	<tr>
+		<th>Id</th>
+		<th>Response Code</th>
+		<th>Response Size</th>
+	</tr>
+	<% @event.request_logs.each do |request_log| %>
+		<tr>
+			<td><%= request_log.id %></td>
+			<td><%= request_log.response_code %></td>
+			<td><%= request_log.body.size %></td>
+		</tr>
+	<% end %>
+</table>
